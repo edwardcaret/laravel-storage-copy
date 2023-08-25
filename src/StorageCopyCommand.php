@@ -87,7 +87,7 @@ class StorageCopyCommand extends Command
             }
 
             // If file already exists in destination
-            $mime_type = Storage::disk($source)->getMimeType($file);
+            $mime_type = Storage::disk($source)->mimeType($file);
             if (strpos($file, '.css') !== false) { $mime_type = 'text/css'        ; }
             if (strpos($file, '.js' ) !== false) { $mime_type = 'text/javascript' ; }
             if (strpos($file, '.svg') !== false) { $mime_type = 'image/svg+xml'   ; }
@@ -97,7 +97,7 @@ class StorageCopyCommand extends Command
                     $visibility = $this->option('novisibility') ? null : Storage::disk($source)->getVisibility($file);
                     $options = [ 'visibility'  => $visibility, 'ContentType' => $mime_type ];
                     $content = Storage::disk($source)->get($file);
-                    Storage::disk($destination)->getDriver()->put($file, $content, $options);
+                    Storage::disk($destination)->put($file, $content, $options);
                     $this->countOutputLog('copied', $file);
                 } else { // Skip file
                     Storage::disk($destination)->setVisibility($file, 'public');
@@ -108,7 +108,7 @@ class StorageCopyCommand extends Command
                 $visibility = $this->option('novisibility') ? null : Storage::disk($source)->getVisibility($file);
                 $content = Storage::disk($source)->get($file);
                 $options = [ 'visibility'  => $visibility, 'ContentType' => $mime_type ];
-                Storage::disk($destination)->getDriver()->put($file, $content, $options);
+                Storage::disk($destination)->put($file, $content, $options);
                 $this->countOutputLog('copied', $file);
             }
             
