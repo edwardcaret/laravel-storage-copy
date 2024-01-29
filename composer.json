@@ -31,7 +31,7 @@
         "league/flysystem-aws-s3-v3": "^1.0 || ^3.0",
         "illuminate/console": "5.5 - 9",
         "illuminate/filesystem": "5.5 - 9",
-        "illuminate/log": "5.5 - 9",
+        "illuminate/log": "5.5 - 9"
     },
     "autoload": {
         "psr-4": {
